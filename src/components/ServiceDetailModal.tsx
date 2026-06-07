@@ -277,7 +277,7 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 30, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 120, delay: 0.1 }}
-            className="w-full max-w-4xl bg-[#0d0d0d] border border-gold/15 shadow-2xl relative p-6 md:p-12 my-auto"
+            className="w-full max-w-4xl bg-[#0d0d0d] border border-gold/15 shadow-2xl relative p-5 md:p-12 my-auto"
           >
             {/* Sliding gold accents border */}
             <span className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-gold-light via-gold to-gold-dark" />
@@ -294,11 +294,11 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
 
             {/* Category Tag & Header Row */}
             <div className="mb-8 pr-12">
-              <span className="font-mono text-[9px] md:text-2xs text-[#C9A84C] font-semibold tracking-[0.3em] uppercase block mb-3 flex items-center gap-2">
+              <span className="font-mono text-[9px] md:text-[10px] text-[#C9A84C] font-semibold tracking-[0.3em] uppercase block mb-3 flex items-center gap-2">
                 <Sparkles size={11} className="text-gold animate-pulse" />
                 Service Deep-Dive Portfolio
               </span>
-              <h1 className="font-serif text-3xl md:text-5xl text-[#e5e5e5] font-light leading-tight tracking-wide mb-4">
+              <h1 className="font-serif text-xl md:text-4xl text-[#e5e5e5] font-light leading-tight tracking-wide mb-4">
                 {serviceId === 'smm' && "Social Media Management"}
                 {serviceId === 'cc' && "Content Creation"}
                 {serviceId === 'gd' && "Graphic Design"}
@@ -306,7 +306,7 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                 {serviceId === 'wfb' && "Web & Funnel Building"}
                 {serviceId === 'aia' && "AI Automations"}
               </h1>
-              <p className="font-serif text-[#C9A84C] italic text-base md:text-lg tracking-wide font-normal">
+              <p className="font-serif text-[#C9A84C] italic text-xs md:text-lg tracking-wide font-normal">
                 {blog.subtitle}
               </p>
               <div className="w-24 h-[1px] bg-gold/30 mt-6" />
@@ -320,24 +320,24 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                 
                 {/* 1. Overview Callout Block */}
                 <div className="border-l-2 border-[#C9A84C]/50 pl-6 py-1 bg-gold/[0.02]">
-                  <p className="font-sans text-xs md:text-sm text-[#e5e5e5]/80 leading-relaxed font-light italic">
+                  <p className="font-sans text-[11px] md:text-[13px] text-[#e5e5e5]/80 leading-relaxed font-light italic">
                     \"{blog.overview}\"
                   </p>
                 </div>
 
                 {/* 2. Core Operational Philosophy */}
                 <div className="space-y-4">
-                  <h2 className="font-serif text-lg md:text-xl text-[#E8C97A] font-medium tracking-wide">
+                  <h2 className="font-serif text-sm md:text-lg text-[#E8C97A] font-medium tracking-wide">
                     {blog.conceptTitle}
                   </h2>
-                  <p className="font-sans text-xs md:text-sm text-[#e5e5e5]/60 leading-relaxed font-light">
+                  <p className="font-sans text-[11px] md:text-[13px] text-[#e5e5e5]/60 leading-relaxed font-light">
                     {blog.conceptText}
                   </p>
                 </div>
 
                 {/* 3. Detailed Step-by-Step Methodology */}
                 <div className="space-y-6 pt-2">
-                  <h2 className="font-serif text-lg md:text-xl text-[#E8C97A] font-medium tracking-wide border-b border-gold/10 pb-3 flex items-center gap-2">
+                  <h2 className="font-serif text-sm md:text-lg text-[#E8C97A] font-medium tracking-wide border-b border-gold/10 pb-3 flex items-center gap-2">
                     <Shield size={16} className="text-gold/50" />
                     {blog.methodologyTitle}
                   </h2>
@@ -348,10 +348,10 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                           {step.phase}
                         </div>
                         <div className="space-y-1">
-                          <h4 className="font-sans text-xs md:text-sm font-semibold text-[#e5e5e5] tracking-wide">
+                          <h4 className="font-sans text-[11px] md:text-[13px] font-semibold text-[#e5e5e5] tracking-wide">
                             {step.title}
                           </h4>
-                          <p className="font-sans text-2xs md:text-xs text-[#e5e5e5]/50 leading-relaxed font-light">
+                          <p className="font-sans text-[10px] md:text-[12px] text-[#e5e5e5]/50 leading-relaxed font-light">
                             {step.description}
                           </p>
                         </div>
@@ -362,10 +362,10 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
 
                 {/* 4. Client Impact / ROI section */}
                 <div className="space-y-3 pt-4 border-t border-gold/5">
-                  <h3 className="font-serif text-base md:text-lg text-[#E8C97A] font-light italic">
+                  <h3 className="font-serif text-xs md:text-sm text-[#E8C97A] font-light italic">
                     {blog.impactTitle}
                   </h3>
-                  <p className="font-sans text-xs text-[#e5e5e5]/50 leading-relaxed font-light">
+                  <p className="font-sans text-[11px] md:text-xs text-[#e5e5e5]/50 leading-relaxed font-light">
                     {blog.impactText}
                   </p>
                 </div>
@@ -380,7 +380,7 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                   <span className="absolute top-0 right-4 font-mono text-[50px] font-black text-gold/[0.02] select-none">
                     SPEC
                   </span>
-                  <h3 className="font-serif text-xs md:text-sm text-[#E8C97A] font-semibold tracking-wider uppercase mb-6 flex items-center gap-2">
+                  <h3 className="font-serif text-[11px] md:text-xs text-[#E8C97A] font-semibold tracking-wider uppercase mb-6 flex items-center gap-2">
                     <CheckCircle2 size={14} className="text-gold" />
                     Core Deliverables
                   </h3>
@@ -388,7 +388,7 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                     {blog.deliverables.map((item, idx) => (
                       <li key={idx} className="flex gap-3 items-start">
                         <span className="text-gold/70 text-xs mt-0.5">▪</span>
-                        <span className="font-sans text-2xs md:text-xs text-[#e5e5e5]/70 font-light leading-relaxed">
+                        <span className="font-sans text-[10px] md:text-xs text-[#e5e5e5]/70 font-light leading-relaxed">
                           {item}
                         </span>
                       </li>
@@ -405,10 +405,10 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                 {/* Instant Handshake Call-To-Action Box */}
                 <div className="bg-gradient-to-br from-gold/[0.03] to-transparent border border-gold/10 p-6 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-serif text-sm text-[#e5e5e5] mb-2 tracking-wide font-normal">
+                    <h4 className="font-serif text-xs md:text-sm text-[#e5e5e5] mb-2 tracking-wide font-normal">
                       Maximize Your Conversions
                     </h4>
-                    <p className="font-sans text-2xs text-[#e5e5e5]/45 leading-relaxed mb-6 font-light">
+                    <p className="font-sans text-[10px] md:text-xs text-[#e5e5e5]/45 leading-relaxed mb-6 font-light">
                       Let our expert engineering team deploy this precise strategic framework directly into your brand systems to maximize recurring client bookings.
                     </p>
                   </div>
@@ -416,7 +416,7 @@ export default function ServiceDetailModal({ serviceId, onClose }: ServiceDetail
                   <button
                     onClick={handleCtaClick}
                     id="modal-cta-contact"
-                    className="w-full py-3 bg-[#C9A84C]/90 hover:bg-[#C9A84C] text-[#080808] font-sans text-2xs tracking-widest uppercase font-semibold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none"
+                    className="w-full py-2.5 bg-[#C9A84C]/90 hover:bg-[#C9A84C] text-[#080808] font-sans text-[10px] tracking-widest uppercase font-semibold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none"
                   >
                     <span>Request Collaboration</span>
                     <Send size={11} />

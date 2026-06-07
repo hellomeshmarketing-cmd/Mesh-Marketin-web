@@ -68,7 +68,7 @@ export default function Faq() {
   return (
     <section 
       id="faq" 
-      className="py-24 md:py-32 bg-[#080808] border-t border-gold/10 relative px-6 md:px-12"
+      className="py-16 md:py-32 bg-[#080808] border-t border-gold/10 relative px-4 md:px-12"
     >
       {/* Subtle overlay ambient background gradients */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
@@ -82,10 +82,10 @@ export default function Faq() {
             Support & Intelligence
             <Sparkles size={12} className="text-gold" />
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl text-[#e5e5e5] font-light tracking-wide leading-tight">
+          <h2 className="font-serif text-2xl md:text-5xl text-[#e5e5e5] font-light tracking-wide leading-tight">
             Frequently Asked <span className="italic font-normal text-[#C9A84C]">Questions</span>
           </h2>
-          <p className="font-sans text-[11px] md:text-xs text-[#e5e5e5]/40 tracking-wider uppercase mt-4 max-w-md leading-relaxed">
+          <p className="font-sans text-[10px] md:text-xs text-[#e5e5e5]/40 tracking-wider uppercase mt-4 max-w-md leading-relaxed">
             Discover the mechanics behind our digital conversion systems and strategic campaign blueprints.
           </p>
           <div className="w-20 h-[1px] bg-gold mt-6" />
@@ -110,7 +110,7 @@ export default function Faq() {
 
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full text-left p-6 md:p-8 flex items-center justify-between gap-6 cursor-pointer select-none group"
+                  className="w-full text-left p-4 md:p-8 flex items-center justify-between gap-4 cursor-pointer select-none group"
                   aria-expanded={isOpen}
                 >
                   <div className="flex flex-col gap-1.5 flex-1 pr-2">
@@ -119,7 +119,7 @@ export default function Faq() {
                       {item.category}
                     </span>
                     {/* Question Header */}
-                    <span className={`font-serif text-base md:text-lg transition-colors duration-300 ${
+                    <span className={`font-serif text-xs md:text-lg transition-colors duration-300 ${
                       isOpen ? 'text-[#E8C97A] font-medium' : 'text-[#e5e5e5] group-hover:text-gold-light'
                     }`}>
                       {item.question}
@@ -147,8 +147,8 @@ export default function Faq() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0 border-t border-gold/5">
-                        <div className="font-sans text-xs md:text-sm text-[#e5e5e5]/70 leading-relaxed font-light hoverable space-y-2 max-w-3xl mt-4">
+                      <div className="px-4 pb-4 md:px-8 md:pb-8 pt-0 border-t border-gold/5">
+                        <div className="font-sans text-[11px] md:text-sm text-[#e5e5e5]/70 leading-relaxed font-light hoverable space-y-2 max-w-3xl mt-3">
                           <p>{item.answer}</p>
                         </div>
                       </div>
