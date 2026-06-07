@@ -1,5 +1,6 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { MapPin, Mail, MessageCircle, Send, Check } from 'lucide-react';
+import { MapPin, Mail, MessageCircle, Send, Check, Sparkles, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ export default function Contact() {
     message: ''
   });
   const [isSent, setIsSent] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     const observerOptions = {
@@ -52,7 +54,15 @@ export default function Contact() {
     // Open WhatsApp link
     window.open(waUrl, '_blank');
     setIsSent(true);
-    setTimeout(() => setIsSent(false), 3000);
+    setShowToast(true);
+    
+    setTimeout(() => {
+      setIsSent(false);
+    }, 4000);
+    
+    setTimeout(() => {
+      setShowToast(false);
+    }, 6000);
   };
 
   return (
@@ -250,6 +260,55 @@ export default function Contact() {
 
         </div>
 
+      </div>
+
+      {/* Gold-Themed Success Toast Notification Container */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none">
+        <AnimatePresence>
+          {showToast && (
+            <motion.div
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="pointer-events-auto w-[340px] max-w-sm bg-[#121212] border border-[#C9A84C]/40 shadow-2xl p-5 rounded-none flex gap-4 relative overflow-hidden group"
+            >
+              {/* Decorative top-border matching design theme */}
+              <span className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-gold-light via-gold to-gold-dark" />
+              
+              {/* Icon */}
+              <div className="flex-shrink-0 w-10 h-10 rounded-full border border-[#C9A84C]/25 flex items-center justify-center bg-gold/5 text-gold self-start">
+                <Sparkles size={18} className="animate-pulse" />
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 pr-6">
+                <h4 className="font-serif text-[#E8C97A] text-sm font-semibold tracking-wider mb-1 uppercase">
+                  Proposal Compiled!
+                </h4>
+                <p className="font-sans text-[11px] text-[#e5e5e5]/70 font-light leading-relaxed">
+                  Your customized inquiry has been styled. Passing seamlessly to WhatsApp...
+                </p>
+                <div className="mt-2.5 flex gap-2 items-center text-[8px] text-[#C9A84C]/70 tracking-widest font-mono">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C9A84C] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#C9A84C]"></span>
+                  </span>
+                  <span>SSL SECURE SYSTEM PASS</span>
+                </div>
+              </div>
+
+              {/* Close button */}
+              <button
+                onClick={() => setShowToast(false)}
+                className="absolute top-4 right-4 text-[#e5e5e5]/30 hover:text-[#C9A84C] transition-colors duration-300 focus:outline-none"
+                aria-label="Close notification"
+              >
+                <X size={14} />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
