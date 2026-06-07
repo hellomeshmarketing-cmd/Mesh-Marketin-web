@@ -3,7 +3,7 @@ import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
-import About from './components/About';
+import Pricing from './components/Pricing';
 import Clients from './components/Clients';
 import Mockups from './components/Mockups';
 import Process from './components/Process';
@@ -48,7 +48,7 @@ export default function App() {
       <main className="relative z-10">
         <Hero />
         <Services />
-        <About />
+        <Pricing />
         <Clients />
         <Mockups />
         <Process />

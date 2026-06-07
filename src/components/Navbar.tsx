@@ -18,7 +18,7 @@ export default function Navbar() {
       }
 
       // Check active section
-      const sections = ['hero', 'services', 'about', 'clients', 'process', 'faq', 'contact'];
+      const sections = ['hero', 'services', 'pricing', 'clients', 'process', 'faq', 'contact'];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
@@ -92,7 +92,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           {[
             { label: 'Services', id: 'services' },
-            { label: 'About', id: 'about' },
+            { label: 'Pricing', id: 'pricing' },
             { label: 'Clients', id: 'clients' },
             { label: 'Process', id: 'process' },
             { label: 'FAQ', id: 'faq' },
@@ -136,7 +136,7 @@ export default function Navbar() {
         <div className="flex flex-col items-center justify-center h-full gap-8 pb-32">
           {[
             { label: 'Services', id: 'services' },
-            { label: 'About', id: 'about' },
+            { label: 'Pricing', id: 'pricing' },
             { label: 'Clients', id: 'clients' },
             { label: 'Process', id: 'process' },
             { label: 'FAQ', id: 'faq' },
