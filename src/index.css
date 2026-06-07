@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --color-gold-light: #E8C97A;
+  --color-gold: #C9A84C;
+  --color-gold-dark: #A9872D;
+  --color-near-black: #080808;
+  --color-dark-gray: #121212;
+  --color-card-bg: #101010;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #080808;
+    color: #e5e5e5;
+    font-family: var(--font-sans);
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Custom Selection styling */
+  ::selection {
+    background-color: #C9A84C;
+    color: #080808;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080808;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 4px;
+    border: 2px solid #080808;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C9A84C;
+  }
+}
+
+/* Scroll reveal helper class */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Infinite scrolling marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Pulsing animated button glowing background */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 10px 25px -5px rgba(201, 168, 76, 0.3);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px -5px rgba(201, 168, 76, 0.5);
+  }
+}
+
+.animate-float-pulsar {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Tiny gold particles background or gold grids */
+.gold-grid {
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle, #C9A84C 1px, transparent 1px);
+}
+
+/* Custom cursor tracker styles */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #E8C97A;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+.custom-cursor-follower {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(201, 168, 76, 0.6);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.custom-cursor-hover {
+  width: 50px;
+  height: 50px;
+  border-color: #E8C97A;
+  background-color: rgba(201, 168, 76, 0.1);
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-dot, .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
