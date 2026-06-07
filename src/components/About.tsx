@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Target, Award, Compass } from 'lucide-react';
 // @ts-ignore
-import ceoPhoto from '../assets/images/ceo.jpg';
+import ceoPhoto from '../assets/images/ceo_portrait_1780824658276.png';
 
 export default function About() {
   useEffect(() => {

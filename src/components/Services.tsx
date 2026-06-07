@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { 
   Megaphone, 
   PenTool, 
@@ -8,8 +8,11 @@ import {
   Zap 
 } from 'lucide-react';
 import { Service } from '../types';
+import ServiceDetailModal from './ServiceDetailModal';
 
 export default function Services() {
+  const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
+
   const services: (Service & { icon: any })[] = [
     {
       id: "smm",
@@ -107,8 +110,9 @@ export default function Services() {
             return (
               <div 
                 key={service.id}
+                onClick={() => setSelectedServiceId(service.id)}
                 style={{ transitionDelay: `${index * 100}ms` }}
-                className="group relative bg-[#0e0e0e] border border-gold/5 px-8 py-10 rounded-none transition-all duration-500 hover:bg-[#121212]/80 hover:border-gold/20 reveal-services reveal-on-scroll flex flex-col hover:shadow-xl hover:shadow-gold/[0.02]"
+                className="group relative bg-[#0e0e0e] border border-gold/5 px-8 py-10 rounded-none transition-all duration-500 hover:bg-[#121212]/80 hover:border-gold/20 reveal-services reveal-on-scroll flex flex-col hover:shadow-xl hover:shadow-gold/[0.02] cursor-pointer"
               >
                 {/* Slid-in top golden border */}
                 <span className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-gold-light via-gold to-gold-dark scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
@@ -134,7 +138,7 @@ export default function Services() {
                 </p>
 
                 {/* Subtle read more arrow linkage matching high end style */}
-                <div className="mt-auto pt-4 flex items-center gap-1.5 text-[10px] text-gold/45 tracking-widest uppercase font-semibold group-hover:text-gold group-hover:translate-x-1 transition-all duration-300 cursor-pointer">
+                <div className="mt-auto pt-4 flex items-center gap-1.5 text-[10px] text-gold/45 tracking-widest uppercase font-semibold group-hover:text-gold group-hover:translate-x-1 transition-all duration-300">
                   <span>DISCOVER DETAILS</span>
                   <span className="text-xs">→</span>
                 </div>
@@ -144,6 +148,12 @@ export default function Services() {
         </div>
 
       </div>
+
+      {/* Editorial Detailed Modal Overlay */}
+      <ServiceDetailModal 
+        serviceId={selectedServiceId} 
+        onClose={() => setSelectedServiceId(null)} 
+      />
     </section>
   );
 }
