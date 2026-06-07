@@ -7,6 +7,7 @@ import About from './components/About';
 import Clients from './components/Clients';
 import Mockups from './components/Mockups';
 import Process from './components/Process';
+import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -51,6 +52,7 @@ export default function App() {
         <Clients />
         <Mockups />
         <Process />
+        <Faq />
         <Contact />
       </main>
 

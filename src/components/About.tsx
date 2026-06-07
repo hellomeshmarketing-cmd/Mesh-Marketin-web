@@ -1,5 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Target, Award, Compass } from 'lucide-react';
+// @ts-ignore
+import ceoPhoto from '../assets/images/ceo.jpg';
 
 export default function About() {
   useEffect(() => {
@@ -24,7 +26,8 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
-  const ceoPhoto = "https://photos.fife.usercontent.google.com/pw/AP1GczM4OmQYhXB5h7GFsIrZmc_txRQDIlEXIfRfucYWYMUhyCOzzLB5nN8=w945-h945-s-no-gm?authuser=0";
+  const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <section 
@@ -53,23 +56,44 @@ export default function About() {
             <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 w-1/2 h-1/2 border-r border-b border-[#C9A84C]/45 z-0" />
 
             {/* Main Picture Wrapper */}
-            <div className="relative w-full max-w-[380px] aspect-[4/5] bg-black overflow-hidden border border-[#C9A84C]/25 z-10 hover:border-gold/50 transition-colors duration-500">
-              <img 
-                src={ceoPhoto} 
-                alt="Meshack M. - Founder & CEO of Mesh Marketing" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 scale-100 hover:scale-105 transition-all duration-700"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  // Fallback frame in case of load error (google block useragent etc)
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
-              />
+            <div className="relative w-full max-w-[380px] aspect-[4/5] bg-neutral-950 overflow-hidden border border-[#C9A84C]/25 z-10 hover:border-gold/50 transition-colors duration-500 flex items-center justify-center">
               
-              {/* Fallback silhouette if image fails to render */}
-              <div className="absolute inset-0 bg-neutral-900 border border-gold/15 flex flex-col items-center justify-center -z-10 p-8 text-center">
-                <span className="font-serif italic text-gold text-5xl mb-4">M.M.</span>
-                <span className="font-sans text-[9px] text-[#e5e5e5]/40 tracking-widest uppercase">Founder Portrait</span>
-              </div>
+              {!imageError && (
+                <img 
+                  src={ceoPhoto} 
+                  alt="Meshack M. - Founder & CEO of Mesh Marketing" 
+                  className={`w-full h-full object-cover scale-100 hover:scale-105 transition-all duration-700 absolute inset-0 ${
+                    imageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  referrerPolicy="no-referrer"
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageError(true)}
+                />
+              )}
+              
+              {/* Fallback portrait element if image is loading or fails rendering */}
+              {(!imageLoaded || imageError) && (
+                <div className="absolute inset-0 bg-[#0e0e0e] border border-gold/15 flex flex-col items-center justify-center p-8 text-center select-none">
+                  <div className="w-24 h-24 rounded-full border border-[#C9A84C]/35 bg-[#C9A84C]/5 flex items-center justify-center mb-6 relative transition-transform duration-500">
+                    <span className="font-serif italic text-gold text-5xl tracking-wide">M</span>
+                    <span className="absolute -inset-1 rounded-full border border-dashed border-[#C9A84C]/20 animate-spin [animation-duration:15s]" />
+                  </div>
+                  <span className="font-serif italic text-[#C9A84C] text-2xl tracking-wide">Meshack M.</span>
+                  <span className="font-sans text-[10px] text-white/50 tracking-[0.25em] uppercase mt-2">Founder & CEO</span>
+                  
+                  {/* Informative, luxurious subtext */}
+                  <div className="mt-8 pt-4 border-t border-gold/10 w-4/5 text-center">
+                    <p className="font-mono text-[8px] text-[#C9A84C]/65 tracking-widest uppercase mb-1">
+                      {imageError ? "CEO PORTRAIT FRAMEWORK" : "LOADING PORTRAIT"}
+                    </p>
+                    <p className="font-sans text-[8px] text-[#e5e5e5]/45 leading-normal uppercase">
+                      {imageError 
+                        ? "Local asset validation error. Displaying fallback monograms." 
+                        : "Synchronizing high-fidelity CEO studio photographic data..."}
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Gold CEO Tag bottom right */}
               <div className="absolute bottom-4 right-4 bg-[#C9A84C] text-[#080808] px-4 py-2 text-[10px] font-bold tracking-[0.2em] uppercase shadow-lg z-20">

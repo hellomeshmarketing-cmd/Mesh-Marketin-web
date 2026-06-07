@@ -5,6 +5,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [logoError, setLogoError] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   // Handle scroll trigger dark layout
   useEffect(() => {
@@ -16,7 +18,7 @@ export default function Navbar() {
       }
 
       // Check active section
-      const sections = ['hero', 'services', 'about', 'clients', 'process', 'contact'];
+      const sections = ['hero', 'services', 'about', 'clients', 'process', 'faq', 'contact'];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
@@ -57,18 +59,24 @@ export default function Navbar() {
           onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }}
           className="flex items-center gap-3 group"
         >
-          <div className="relative w-10 h-10 overflow-hidden rounded-full border border-gold/40 flex items-center justify-center bg-black transition-transform duration-500 group-hover:scale-105">
-            <img 
-              src={companyLogo} 
-              alt="Mesh Marketing" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-              onError={(e) => {
-                // Remove image on error to show monogram fallback
-                (e.target as HTMLElement).style.display = 'none';
-              }}
-            />
-            <span className="absolute font-serif font-bold text-sm text-gold">M</span>
+          <div className="relative w-10 h-10 overflow-hidden rounded-full border border-gold/40 flex items-center justify-center bg-black transition-transform duration-500 group-hover:scale-105 select-none">
+            {!logoError && (
+              <img 
+                src={companyLogo} 
+                alt="Mesh Marketing" 
+                className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 ${
+                  logoLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                referrerPolicy="no-referrer"
+                onLoad={() => setLogoLoaded(true)}
+                onError={() => setLogoError(true)}
+              />
+            )}
+            
+            {/* Show premium fallback monogram 'M' icon only when image has error or is loading */}
+            {(!logoLoaded || logoError) && (
+              <span className="absolute font-serif font-bold text-sm text-gold animate-pulse">M</span>
+            )}
           </div>
           <div className="flex flex-col">
             <span className="font-serif text-[#C9A84C] text-lg font-bold tracking-widest leading-none group-hover:text-gold-light transition-colors duration-300">
@@ -87,6 +95,7 @@ export default function Navbar() {
             { label: 'About', id: 'about' },
             { label: 'Clients', id: 'clients' },
             { label: 'Process', id: 'process' },
+            { label: 'FAQ', id: 'faq' },
             { label: 'Contact', id: 'contact' }
           ].map((item) => (
             <a
@@ -130,6 +139,7 @@ export default function Navbar() {
             { label: 'About', id: 'about' },
             { label: 'Clients', id: 'clients' },
             { label: 'Process', id: 'process' },
+            { label: 'FAQ', id: 'faq' },
             { label: 'Contact', id: 'contact' }
           ].map((item) => (
             <a
